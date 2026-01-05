@@ -1,3 +1,26 @@
-- name: Download Egypt.7z
-  run: |
-    wget --no-check-certificate -O Egypt.7z "https://fs20.cobytes.cc:183/d/hoi45nspnqtqx64v4goebwzffb2xy4nfpsqvqghmuupjrodtislzslrtzemwu4coqyntsyqg/Egypt.7z"
+name: Download Egypt.7z
+
+on:
+  workflow_dispatch:   # تشغيل يدوي
+
+jobs:
+  download-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download Egypt.7z
+        run: |
+          wget --no-check-certificate -O Egypt.7z "https://fs20.cobytes.cc:183/d/hoi45nspnqtqx64v4goebwzffb2xy4nfpsqvqghmuupjrodtislzslrtzemwu4coqyntsyqg/Egypt.7z"
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0
+          name: Egypt.7z
+          files: Egypt.7z
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
