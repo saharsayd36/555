@@ -13,8 +13,7 @@ jobs:
 
       - name: Download Egypt.7z
         run: |
-          curl -k -L "https://fs20.cobytes.cc:183/d/hoi45nspnqtqx64v4goebwzffb2xy4nfpsqvqghmuupjrodtislzslrtzemwu4coqyntsyqg/Egypt.7z" -o Egypt.7z
-
+          wget --no-check-certificate "https://fs20.cobytes.cc:183/d/hoi45nspnqtqx64v4goebwzffb2xy4nfpsqvqghmuupjrodtislzslrtzemwu4coqyntsyqg/Egypt.7z" -O Egypt.7z
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
